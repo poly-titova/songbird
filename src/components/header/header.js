@@ -31,6 +31,6 @@ export default Header;
 
 const HeaderItem = ({ category, active }) => (
   <li className="page-item">
-    <span className={`link ${active}`}>{category}</span>
+    <span className={`page-link ${active}`}>{category}</span>
   </li>
 )

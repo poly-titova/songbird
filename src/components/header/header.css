@@ -25,12 +25,13 @@
   overflow: hidden;
 }
 
-.link{
+
+.page-link{
   background-color: #008966;
   border-color: #007c5d;
 }
 
-.link:hover {
+.page-link:hover {
   background-color: #008966;
 }
 
