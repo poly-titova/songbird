@@ -1,0 +1,25 @@
+.current-question {
+  display: flex;
+  padding: 1rem;
+}
+
+.current-question .list-group {
+  margin: 1rem 0 0 1rem;
+  flex: 1 1 auto;
+}
+
+.current-question .list-group-item {
+  padding: .25rem;
+}
+
+.current-question .list-group-item .term {
+  margin-right: .5rem;
+}
+
+.bird-image{
+  width: 200px;
+  height: 155px;
+  border-radius: 10px;
+  margin: 0;
+  object-fit: cover;
+}
