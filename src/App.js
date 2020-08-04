@@ -8,7 +8,10 @@ import Description from './components/description'
 function App() {
   return (
     <div>
-      <Header />
+      <Header
+        count={count}
+        score={score}
+      />
       <CurrentQuestion />
       <div className="row mb2">
         <div className="col-md-6">

@@ -7,7 +7,7 @@ const Header = ({ count, score }) => {
   return (
     <div className="header d-flex">
       <div className="top-indent d-flex">
-        <h3 className="logo">Songbirds</h3>
+        <h3 className="logo">Songbird</h3>
         <div className="score">Score:
         <span>{' ' + score}</span>
         </div>
