@@ -5,14 +5,20 @@ import CurrentQuestion from './components/current-question';
 import Answers from './components/answers'
 import Description from './components/description'
 
+import { state } from './data/constants'
+
 function App() {
   return (
     <div>
       <Header
-        count={count}
-        score={score}
+        count={state.count}
+        score={state.score}
       />
-      <CurrentQuestion />
+      <CurrentQuestion
+        count={state.count}
+        answer={state.answer}
+        userAction={state.userAction}
+      />
       <div className="row mb2">
         <div className="col-md-6">
           <Answers />
