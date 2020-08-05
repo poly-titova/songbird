@@ -1,7 +1,7 @@
 import React from 'react';
 import './header.css';
 
-const listQuestions = ["Разминка", "Ворбьиные", "Лесные птицы", "Певчие птицы", "Хищные птицы", "Морские птицы",];
+import { listQuestions } from '../../data/constants'
 
 const Header = ({ count, score }) => {
   return (
