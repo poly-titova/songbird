@@ -13,8 +13,9 @@ const bird = allBirdsInStage[Math.floor(Math.random() * Math.floor(allBirdsInSta
 state.answer = bird.id
 
 export {
-  state,
+  // state,
   listQuestions,
   defaultName,
+  allBirdsInStage,
   bird
 }
