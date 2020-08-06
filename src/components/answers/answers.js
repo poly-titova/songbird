@@ -2,16 +2,25 @@ import React, { Component } from 'react';
 
 import './answers.css';
 
-import birdsData from '../../data/birds-data'
+import { allBirdsInStage } from '../../data/constants'
 
 export default class Answers extends Component {
 
   render() {
-    const allBirdsInStage = birdsData[0]
-
+    const { comparisonId } = this.props;
     return (
       <ul className="item-list list-group">
-        {allBirdsInStage.map((item) => (<li className="list-group-item"><span className="li-btn"></span>{item.name}</li>))}
+        {allBirdsInStage.map((item) => {
+          const { id } = item
+          return (
+            <li className="list-group-item"
+              id={item.id}
+              onClick={() => comparisonId(id)}>
+              <span className="li-btn"></span>
+              {item.name}
+            </li>
+          )
+        })}
       </ul>
     )
   }
