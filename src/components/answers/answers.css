@@ -16,3 +16,11 @@
   transition: .1s;
   background-color: #444;
 }
+
+.right .li-btn {
+  background-color: #01ac81;
+}
+
+.error .li-btn {
+  background-color: #e92d2d;
+}
