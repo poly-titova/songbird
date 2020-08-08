@@ -12,6 +12,13 @@
   min-height: 173px;
 }
 
+.intro{
+  display: block;
+}
+.intro span{
+  display: block;
+}
+
 .description .image {
   width: 200px;
   height: 155px;

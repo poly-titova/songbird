@@ -3,12 +3,22 @@ import React, { Component } from 'react';
 import './description.css';
 
 export default class Description extends Component {
-
   render() {
-    let {currentBird} = this.props
+    const { currentBird } = this.props
     console.log(currentBird)
     return (
       <div className="description card">
+        {currentBird ? <Info currentBird={currentBird}/> : <Intro />}
+      </div>
+    )
+  }
+}
+
+class Info extends Component {
+  render() {
+    const { currentBird } = this.props
+    return (
+      <React.Fragment>
         <div className="card-body">
           <img className="image"
             src={currentBird && currentBird.image} alt={currentBird && currentBird.name} />
@@ -27,7 +37,18 @@ export default class Description extends Component {
         <span>
           {currentBird && currentBird.description}
         </span>
-      </div>
+      </React.Fragment>
+    )
+  }
+}
+
+class Intro extends Component {
+  render() {
+    return (
+      <p className="intro">
+        <span>Послушайте плеер.</span>
+        <span>Выберите птицу из списка...</span>
+      </p>
     )
   }
 }
