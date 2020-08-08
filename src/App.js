@@ -6,6 +6,7 @@ import Answers from './components/answers'
 import Description from './components/description'
 
 import birdsData from './data/birds-data'
+import './App.css'
 
 class App extends Component {
   state = {
@@ -14,38 +15,44 @@ class App extends Component {
     answer: null,
     userAction: null,
     currentBird: null,
-    status: null
+    allBirdsInStage: birdsData[0],
+    bird: birdsData[0][Math.floor(Math.random() * Math.floor(birdsData[0].length))]
   }
-  allBirdsInStage = birdsData[this.state.count]
-  bird = this.allBirdsInStage[Math.floor(Math.random() * Math.floor(this.allBirdsInStage.length))]
+
+  allBirdsInStage = birdsData[this.state.count + 1]
+  bird = this.state.allBirdsInStage[Math.floor(Math.random() * Math.floor(this.state.allBirdsInStage.length))]
+  answer = this.state.bird.id
+
   click = (id) => {
-    if (id === this.state.answer) {
-      this.setState(state => {
-        return {
-          userAction: state.answer,
-          status: 'right'
-        }
-      });
-    } else {
-      this.setState(state => {
-        return {
-          userAction: id,
-          status: 'error'
-        }
-      });
-    }
-    const currentBird = this.allBirdsInStage[id - 1]
+    this.state.userAction = id
+    const currentBird = this.state.allBirdsInStage[id - 1]
     this.setState({ currentBird })
     console.log('id: ' + id)
-    console.log('answer: ' + this.state.answer)
+    console.log('answer: ' + this.answer)
     console.log('userAction: ' + this.state.userAction)
-    console.log(this.state.currentBird)
     return currentBird
   }
+
+  onButtonClick = () => {
+    const { count, userAction, score } = this.state
+
+    if (userAction === this.state.bird.id) {
+      this.setState({
+        count: count + 1,
+        score: score,
+        answer: null,
+        userAction: null,
+        currentBird: null,
+        allBirdsInStage: birdsData[count + 1],
+        bird: birdsData[count + 1][Math.floor(Math.random() * Math.floor(birdsData[count + 1].length))]
+      })
+    }
+  }
+
   render() {
-    const { count, score, userAction, currentBird, status } = this.state
-    this.state.answer = this.bird.id
-    console.log(currentBird)
+    const { count, score, userAction, currentBird, allBirdsInStage, bird } = this.state
+    console.log(bird)
+    console.log(allBirdsInStage)
     return (
       <div>
         <Header
@@ -54,16 +61,16 @@ class App extends Component {
         />
         <CurrentQuestion
           count={count}
-          answer={this.state.answer}
+          answer={bird.id}
           userAction={userAction}
-          bird={this.bird}
+          bird={bird}
         />
         <div className="row mb2">
           <div className="col-md-6">
             <Answers
-              allBirdsInStage={this.allBirdsInStage}
+              allBirdsInStage={allBirdsInStage}
               click={this.click}
-              status={status}
+              answer={bird.id}
             />
           </div>
           <div className="col-md-6">
@@ -71,6 +78,9 @@ class App extends Component {
               currentBird={currentBird}
             />
           </div>
+          <button className={userAction === bird.id ? 'btn right' : 'btn'}
+            onClick={this.onButtonClick}
+          >Next level</button>
         </div>
       </div>
     );
