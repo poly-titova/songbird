@@ -5,7 +5,6 @@ import './description.css';
 export default class Description extends Component {
   render() {
     const { currentBird } = this.props
-    console.log(currentBird)
     return (
       <div className="description card">
         {currentBird ? <Info currentBird={currentBird}/> : <Intro />}
