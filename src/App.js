@@ -12,6 +12,7 @@ class App extends Component {
   state = {
     count: 0,
     score: 0,
+    ball: 5,
     answer: null,
     userAction: null,
     currentBird: null,
@@ -19,17 +20,30 @@ class App extends Component {
     bird: birdsData[0][Math.floor(Math.random() * Math.floor(birdsData[0].length))]
   }
 
-  allBirdsInStage = birdsData[this.state.count + 1]
-  bird = this.state.allBirdsInStage[Math.floor(Math.random() * Math.floor(this.state.allBirdsInStage.length))]
-  answer = this.state.bird.id
-
   click = (id) => {
     this.state.userAction = id
+    if (this.state.userAction === this.state.bird.id) {
+      this.state.score = this.state.score + this.state.ball
+    }
+
+    if (id !== this.state.bird.id) {
+      this.setState(state => {
+        return {
+          ball: state.ball - 1
+        }
+      })
+    }
+    
+    if (this.state.ball < 0) {
+      this.state.ball = 0
+    }
+    
     const currentBird = this.state.allBirdsInStage[id - 1]
     this.setState({ currentBird })
     console.log('id: ' + id)
-    console.log('answer: ' + this.answer)
+    console.log('answer: ' + this.state.bird.id)
     console.log('userAction: ' + this.state.userAction)
+    console.log('ball: ' + this.state.ball)
     return currentBird
   }
 
@@ -39,6 +53,7 @@ class App extends Component {
     if (userAction === this.state.bird.id) {
       this.setState({
         count: count + 1,
+        ball: 5,
         score: score,
         answer: null,
         userAction: null,
@@ -52,7 +67,6 @@ class App extends Component {
   render() {
     const { count, score, userAction, currentBird, allBirdsInStage, bird } = this.state
     console.log(bird)
-    console.log(allBirdsInStage)
     return (
       <div>
         <Header
@@ -78,7 +92,7 @@ class App extends Component {
               currentBird={currentBird}
             />
           </div>
-          <button className={userAction === bird.id ? 'btn right' : 'btn'}
+          <button className={userAction === bird.id ? 'btn next-level' : 'btn'}
             onClick={this.onButtonClick}
           >Next level</button>
         </div>
