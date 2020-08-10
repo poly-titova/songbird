@@ -41,6 +41,29 @@
   color: #fff;
 }
 
+.li-btn{
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 15px;
+  border-radius: 50%;
+  -webkit-transition: .1s;
+  transition: .1s;
+  background-color: #444;
+}
+
+.item-list .list-group-item .right {
+  background-color: #01ac81 !important;
+}
+
+.item-list .list-group-item .error {
+  background-color: #e92d2d !important;
+}
+
+.item-list .list-group-item .default {
+  background-color: #444 !important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

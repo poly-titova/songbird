@@ -21,27 +21,31 @@ class App extends Component {
     bird: birdsData[0][Math.floor(Math.random() * Math.floor(birdsData[0].length))]
   }
 
-  click = (id) => {
-    this.state.userAction = id
+  onItemClick = (item) => {
+    (Number(item.target.id) === this.state.bird.id)
+      ? (item.target.firstChild.className = "li-btn right")
+      : (item.target.firstChild.className = "li-btn error")
+    
+    this.state.userAction = Number(item.target.id)
     if (this.state.userAction === this.state.bird.id) {
       this.state.score = this.state.score + this.state.ball
     }
 
-    if (id !== this.state.bird.id) {
+    if (Number(item.target.id) !== this.state.bird.id) {
       this.setState(state => {
         return {
           ball: state.ball - 1
         }
       })
     }
-
+    
     if (this.state.ball < 0) {
       this.state.ball = 0
     }
-
-    const currentBird = this.state.allBirdsInStage[id - 1]
+    
+    const currentBird = this.state.allBirdsInStage[Number(item.target.id) - 1]
     this.setState({ currentBird })
-    console.log('id: ' + id)
+    console.log('id: ' + Number(item.target.id))
     console.log('answer: ' + this.state.bird.id)
     console.log('userAction: ' + this.state.userAction)
     console.log('ball: ' + this.state.ball)
@@ -103,8 +107,8 @@ class App extends Component {
             bird={bird}
             count={count}
             score={score}
-            click={this.click}
             userAction={userAction}
+            onItemClick={this.onItemClick}
             currentBird={currentBird}
             allBirdsInStage={allBirdsInStage}
             onButtonClick={this.onButtonClick}
@@ -118,7 +122,7 @@ export default App;
 
 class Game extends Component {
   render() {
-    const { count, score, userAction, currentBird, allBirdsInStage, bird, click, onButtonClick } = this.props
+    const { count, score, userAction, currentBird, allBirdsInStage, bird, onButtonClick, onItemClick } = this.props
     return (
       <React.Fragment>
         <Header
@@ -136,8 +140,8 @@ class Game extends Component {
             <Answers
               allBirdsInStage={allBirdsInStage}
               userAction={userAction}
+              onItemClick={onItemClick}
               answer={bird.id}
-              click={click}
               bird={bird}
             />
           </div>
