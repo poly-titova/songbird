@@ -9,7 +9,7 @@ import { defaultName } from '../../data/constants'
 export default class CurrentQuestion extends Component {
 
   render() {
-    const { userAction, answer, bird } = this.props
+    const { userAction, answer, bird} = this.props
     return (
       <div className="current-question jumbotron rounded">
         <img className="bird-image" src={userAction === answer ? bird.image : defaultBird}></img>
