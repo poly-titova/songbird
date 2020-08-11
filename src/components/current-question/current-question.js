@@ -18,7 +18,8 @@ export default class CurrentQuestion extends Component {
             <h3 className="term">{next === true ? bird.name : defaultName}</h3>
           </li>
           <li className="list-group-item">
-            <audio src={bird.audio} controls="true" style={{width: '100%'}} />
+            <audio id='bird' src={bird.audio} controls="true" style={{width: '100%'}} />
+            {next === true ? document.getElementById('bird').pause() : null}
           </li>
         </ul>
       </div>

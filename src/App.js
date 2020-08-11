@@ -28,12 +28,13 @@ class App extends Component {
 
   onItemClick = (item) => {
     this.state.userAction = Number(item.target.id)
-    if (this.state.userAction === this.state.bird.id) {
-      this.state.score = this.state.score + this.state.ball
-    }
 
     const newStatus = this.state.status.slice()
     if (this.state.next === null) {
+      if (this.state.userAction === this.state.bird.id) {
+        this.state.score = this.state.score + this.state.ball
+      }
+      
       if (this.state.userAction === this.state.bird.id) {
         newStatus[this.state.userAction] = 'right'
         document.getElementById("right").play()
