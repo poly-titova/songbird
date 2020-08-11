@@ -9,13 +9,13 @@ import { defaultName } from '../../data/constants'
 export default class CurrentQuestion extends Component {
 
   render() {
-    const { userAction, answer, bird } = this.props
+    const { bird, next } = this.props
     return (
       <div className="current-question jumbotron rounded">
-        <img className="bird-image" src={userAction === answer ? bird.image : defaultBird}></img>
+        <img className="bird-image" src={next === true ? bird.image : defaultBird}></img>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
-            <h3 className="term">{userAction === answer ? bird.name : defaultName}</h3>
+            <h3 className="term">{next === true ? bird.name : defaultName}</h3>
           </li>
           <li className="list-group-item">
             <audio src={bird.audio} controls="true" style={{width: '100%'}} />

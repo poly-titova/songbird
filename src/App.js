@@ -21,7 +21,9 @@ class App extends Component {
     userAction: null,
     currentBird: null,
     allBirdsInStage: birdsData[0],
-    bird: birdsData[0][Math.floor(Math.random() * Math.floor(birdsData[0].length))]
+    bird: birdsData[0][Math.floor(Math.random() * Math.floor(birdsData[0].length))],
+    status: Array(6).fill(null),
+    next: null
   }
 
   onItemClick = (item) => {
@@ -30,12 +32,19 @@ class App extends Component {
       this.state.score = this.state.score + this.state.ball
     }
 
-    if (this.state.userAction === this.state.bird.id) {
-      item.target.firstChild.className = "li-btn right"
-      document.getElementById("right").play()
+    const newStatus = this.state.status.slice()
+    if (this.state.next === null) {
+      if (this.state.userAction === this.state.bird.id) {
+        newStatus[this.state.userAction] = 'right'
+        document.getElementById("right").play()
+        this.setState({ status: newStatus, next: true })
+      } else {
+        newStatus[this.state.userAction] = 'error'
+        document.getElementById("error").play()
+        this.setState({ status: newStatus })
+      }
     } else {
-      item.target.firstChild.className = "li-btn error"
-      document.getElementById("error").play()
+      newStatus[this.state.userAction] = null
     }
 
     if (this.state.userAction !== this.state.bird.id) {
@@ -60,9 +69,9 @@ class App extends Component {
   }
 
   onButtonClick = () => {
-    const { count, userAction, score } = this.state
+    const { count, score } = this.state
 
-    if (count < 5 && userAction === this.state.bird.id) {
+    if (count < 5 && this.state.next === true) {
       this.setState({
         count: count + 1,
         ball: 5,
@@ -71,7 +80,9 @@ class App extends Component {
         userAction: null,
         currentBird: null,
         allBirdsInStage: birdsData[count + 1],
-        bird: birdsData[count + 1][Math.floor(Math.random() * Math.floor(birdsData[count + 1].length))]
+        bird: birdsData[count + 1][Math.floor(Math.random() * Math.floor(birdsData[count + 1].length))],
+        status: Array(6).fill(null),
+        next: null
       })
     }
 
@@ -84,7 +95,9 @@ class App extends Component {
         userAction: null,
         currentBird: null,
         allBirdsInStage: birdsData[0],
-        bird: birdsData[0][Math.floor(Math.random() * Math.floor(birdsData[0].length))]
+        bird: birdsData[0][Math.floor(Math.random() * Math.floor(birdsData[0].length))],
+        status: Array(6).fill(null),
+        next: null
       })
     }
   }
@@ -98,12 +111,14 @@ class App extends Component {
       userAction: null,
       currentBird: null,
       allBirdsInStage: birdsData[0],
-      bird: birdsData[0][Math.floor(Math.random() * Math.floor(birdsData[0].length))]
+      bird: birdsData[0][Math.floor(Math.random() * Math.floor(birdsData[0].length))],
+      status: Array(6).fill(null),
+      next: null
     })
   }
 
   render() {
-    const { count, score, userAction, currentBird, allBirdsInStage, bird } = this.state
+    const { count, score, userAction, currentBird, allBirdsInStage, bird, status, next } = this.state
     console.log(bird)
     return (
       <div>
@@ -117,6 +132,8 @@ class App extends Component {
             userAction={userAction}
             onItemClick={this.onItemClick}
             currentBird={currentBird}
+            status={status}
+            next={next}
             allBirdsInStage={allBirdsInStage}
             onButtonClick={this.onButtonClick}
           />}
@@ -129,7 +146,7 @@ export default App;
 
 class Game extends Component {
   render() {
-    const { count, score, userAction, currentBird, allBirdsInStage, bird, onButtonClick, onItemClick } = this.props
+    const { count, score, userAction, currentBird, allBirdsInStage, bird, onButtonClick, onItemClick, status, next } = this.props
     return (
       <React.Fragment>
         <Header
@@ -141,6 +158,7 @@ class Game extends Component {
           answer={bird.id}
           userAction={userAction}
           bird={bird}
+          next={next}
         />
         <div className="row mb2">
           <div className="col-md-6">
@@ -148,6 +166,7 @@ class Game extends Component {
               allBirdsInStage={allBirdsInStage}
               userAction={userAction}
               onItemClick={onItemClick}
+              status={status}
               answer={bird.id}
               bird={bird}
             />
@@ -157,11 +176,11 @@ class Game extends Component {
               currentBird={currentBird}
             />
           </div>
-          <button className={userAction === bird.id ? 'btn next-level' : 'btn'}
+          <button className={next === true ? 'btn next-level' : 'btn'}
             onClick={onButtonClick}
           >Next level</button>
-          <audio id="right" src={rightSound}/>
-          <audio id="error" src={errorSound}/>
+          <audio id="right" src={rightSound} />
+          <audio id="error" src={errorSound} />
         </div>
       </React.Fragment>
     )
