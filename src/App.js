@@ -6,6 +6,9 @@ import Answers from './components/answers'
 import Description from './components/description'
 import GameOver from './components/game-over'
 
+import rightSound from '../src/data/win.mp3'
+import errorSound from '../src/data/error.mp3'
+
 import birdsData from './data/birds-data'
 import './App.css'
 
@@ -22,30 +25,34 @@ class App extends Component {
   }
 
   onItemClick = (item) => {
-    (Number(item.target.id) === this.state.bird.id)
-      ? (item.target.firstChild.className = "li-btn right")
-      : (item.target.firstChild.className = "li-btn error")
-    
     this.state.userAction = Number(item.target.id)
     if (this.state.userAction === this.state.bird.id) {
       this.state.score = this.state.score + this.state.ball
     }
 
-    if (Number(item.target.id) !== this.state.bird.id) {
+    if (this.state.userAction === this.state.bird.id) {
+      item.target.firstChild.className = "li-btn right"
+      document.getElementById("right").play()
+    } else {
+      item.target.firstChild.className = "li-btn error"
+      document.getElementById("error").play()
+    }
+
+    if (this.state.userAction !== this.state.bird.id) {
       this.setState(state => {
         return {
           ball: state.ball - 1
         }
       })
     }
-    
+
     if (this.state.ball < 0) {
       this.state.ball = 0
     }
-    
-    const currentBird = this.state.allBirdsInStage[Number(item.target.id) - 1]
+
+    const currentBird = this.state.allBirdsInStage[this.state.userAction - 1]
     this.setState({ currentBird })
-    console.log('id: ' + Number(item.target.id))
+    console.log('id: ' + this.state.userAction)
     console.log('answer: ' + this.state.bird.id)
     console.log('userAction: ' + this.state.userAction)
     console.log('ball: ' + this.state.ball)
@@ -153,6 +160,8 @@ class Game extends Component {
           <button className={userAction === bird.id ? 'btn next-level' : 'btn'}
             onClick={onButtonClick}
           >Next level</button>
+          <audio id="right" src={rightSound}/>
+          <audio id="error" src={errorSound}/>
         </div>
       </React.Fragment>
     )

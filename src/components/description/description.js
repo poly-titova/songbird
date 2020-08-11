@@ -7,7 +7,7 @@ export default class Description extends Component {
     const { currentBird } = this.props
     return (
       <div className="description card">
-        {currentBird ? <Info currentBird={currentBird}/> : <Intro />}
+        {currentBird ? <Info currentBird={currentBird} /> : <Intro />}
       </div>
     )
   }
@@ -21,7 +21,7 @@ class Info extends Component {
         <div className="card-body">
           <img className="image"
             src={currentBird && currentBird.image} alt={currentBird && currentBird.name} />
-          <ul className="list-group list-group-flush">
+          <ul className="list-group list-group-flush" style={{width: '100%'}}>
             <li className="list-group-item">
               <h4>{currentBird && currentBird.name}</h4>
             </li>
@@ -29,7 +29,7 @@ class Info extends Component {
               <span>{currentBird && currentBird.species}</span>
             </li>
             <li className="list-group-item">
-              <audio src={currentBird && currentBird.audio} controls="true" />
+              <audio src={currentBird && currentBird.audio} controls="true" style={{width: '100%'}} />
             </li>
           </ul>
         </div>
