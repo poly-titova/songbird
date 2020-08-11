@@ -2,32 +2,52 @@ import React, { Component } from 'react';
 
 import './description.css';
 
-import birdsData from '../../data/birds-data'
-
 export default class Description extends Component {
-
   render() {
+    const { currentBird } = this.props
     return (
       <div className="description card">
+        {currentBird ? <Info currentBird={currentBird} /> : <Intro />}
+      </div>
+    )
+  }
+}
+
+class Info extends Component {
+  render() {
+    const { currentBird } = this.props
+    return (
+      <React.Fragment>
         <div className="card-body">
           <img className="image"
-            src={birdsData[0][0].image} alt={birdsData[0][0].name} />
-          <ul className="list-group list-group-flush">
+            src={currentBird && currentBird.image} alt={currentBird && currentBird.name} />
+          <ul className="list-group list-group-flush" style={{width: '100%'}}>
             <li className="list-group-item">
-              <h4>{birdsData[0][0].name}</h4>
+              <h4>{currentBird && currentBird.name}</h4>
             </li>
             <li className="list-group-item">
-              <span>{birdsData[0][0].species}</span>
+              <span>{currentBird && currentBird.species}</span>
             </li>
             <li className="list-group-item">
-              <audio src={birdsData[0][0].audio} controls="true" />
+              <audio src={currentBird && currentBird.audio} controls="true" style={{width: '100%'}} />
             </li>
           </ul>
         </div>
         <span>
-          {birdsData[0][0].description}
+          {currentBird && currentBird.description}
         </span>
-      </div>
+      </React.Fragment>
+    )
+  }
+}
+
+class Intro extends Component {
+  render() {
+    return (
+      <p className="intro">
+        <span>Послушайте плеер.</span>
+        <span>Выберите птицу из списка...</span>
+      </p>
     )
   }
 }

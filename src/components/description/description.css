@@ -9,7 +9,17 @@
   display: flex;
   padding: 0;
   flex-direction: row;
-  min-height: 173px;
+  min-height: 160px;
+}
+
+.intro{
+  display: block;
+  flex-direction: row;
+  min-height: 203px;
+}
+
+.intro span{
+  display: block;
 }
 
 .description .image {
