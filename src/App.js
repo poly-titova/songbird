@@ -17,7 +17,6 @@ class App extends Component {
     count: 0,
     score: 0,
     ball: 5,
-    answer: null,
     userAction: null,
     currentBird: null,
     allBirdsInStage: birdsData[0],
@@ -34,7 +33,7 @@ class App extends Component {
       if (this.state.userAction === this.state.bird.id) {
         this.state.score = this.state.score + this.state.ball
       }
-      
+
       if (this.state.userAction === this.state.bird.id) {
         newStatus[this.state.userAction] = 'right'
         document.getElementById("right").play()
@@ -62,10 +61,8 @@ class App extends Component {
 
     const currentBird = this.state.allBirdsInStage[this.state.userAction - 1]
     this.setState({ currentBird })
-    console.log('id: ' + this.state.userAction)
-    console.log('answer: ' + this.state.bird.id)
-    console.log('userAction: ' + this.state.userAction)
-    console.log('ball: ' + this.state.ball)
+    console.log('answer: ' + this.state.bird.name)
+    
     return currentBird
   }
 
@@ -77,7 +74,6 @@ class App extends Component {
         count: count + 1,
         ball: 5,
         score: score,
-        answer: null,
         userAction: null,
         currentBird: null,
         allBirdsInStage: birdsData[count + 1],
@@ -92,7 +88,6 @@ class App extends Component {
         count: 6,
         score: score,
         ball: 5,
-        answer: null,
         userAction: null,
         currentBird: null,
         allBirdsInStage: birdsData[0],
@@ -108,7 +103,6 @@ class App extends Component {
       count: 0,
       score: 0,
       ball: 5,
-      answer: null,
       userAction: null,
       currentBird: null,
       allBirdsInStage: birdsData[0],
