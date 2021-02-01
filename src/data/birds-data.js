@@ -1,5 +1,5 @@
 const birdsData = [
-  [
+  [       
     {
       id: 1,
       name: 'Ворон',
@@ -221,7 +221,7 @@ const birdsData = [
       name: 'Лунь',
       species: 'Circus cyaneus',
       description: 'Лунь – это небольшой сокол. Питается в основном мышевидными грызунами, основа его рациона – полёвки, хомяки, мыши. Оперение луня может быть пепельно-серым. С такой птицей связано сравнение «седой, как лунь».',
-      image: 'https://live.staticflickr.com/65535/49322743903_32f3922d9e.jpg',
+      image: 'https://live.staticflickr.com/4480/37240531151_b74619c99d.jpg',
       audio: 'https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC513498-190709_1175_Cir.cyan-f.mp3'
     },
     {
@@ -265,7 +265,7 @@ const birdsData = [
       description: 'Особенностью голубоногой олуши является не только насыщенный ярко-синий цвет лапок, но еще и тот факт, что они очень теплые. В то время как другие виды птиц греют кладки своим телом, голубоногая олуша делает это с помощью лапок',
       image: 'https://live.staticflickr.com/800/40645471394_4422e69ed8.jpg',
       audio: 'https://www.xeno-canto.org/sounds/uploaded/YHKQPPJDVP/XC411507-171217_1491%20BF%20Booby%205ft%20IDLP%201230%20mp3%20amp.mp3'
-    },
+    },    
     {
       id: 3,
       name: 'Буревестник',
@@ -279,7 +279,7 @@ const birdsData = [
       name: 'Пеликан',
       species: 'Pelecanus',
       description: 'Пеликаны — обитатели морей и рек. Ходят они неуклюже, но хорошо летают и плавают. Питаются в основном рыбой, устраивают коллективные охоты — выстроившись полукругом хлопают по воде крыльями и клювами и вытесняют напуганную рыбу на мелководье.',
-      image: 'https://live.staticflickr.com/7885/46523771945_9496c2a191.jpg',
+      image: 'https://live.staticflickr.com/65535/49159147156_dcbbb5c12a.jpg',
       audio: 'https://www.xeno-canto.org/sounds/uploaded/XAMHIHFTZG/XC331138-call1.mp3'
     },
     {
